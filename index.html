@@ -51,49 +51,58 @@
     const img = document.querySelector('#image')
 
     document.addEventListener("DOMContentLoaded", function() {
-        img.src = './images/ate4.jpg'
 
+      // initial diplay image 
+      img.src = './images/ate4.jpg'
+
+
+      // disabling the tab button to prevent navigating
       document.addEventListener('keydown', function(event) {
         if (event.key === 'Tab') {
           event.preventDefault(); // Prevent default Tab behavior
         }
       });
-
       
-    const noButton = document.querySelector('#no-btn')
-    const button = document.querySelector('.no-button');
-    const maxWidth = window.innerWidth - button.offsetWidth;
-    const maxHeight = window.innerHeight - button.offsetHeight;
-    button.style.transition = 'ease-out 500ms'
+      // randomizing no button   
+      const noButton = document.querySelector('#no-btn')
+      const button = document.querySelector('.no-button');
+      const maxWidth = window.innerWidth - button.offsetWidth;
+      const maxHeight = window.innerHeight - button.offsetHeight;
+      button.style.transition = 'ease-out 500ms'
 
-    button.addEventListener("mouseenter", function() {
-        button.classList.add('absolute')
-        randomizePosition();
-    });
-    setInterval(() => {
-      randomizePosition()
-    }, 1000);
+      button.addEventListener("mouseenter", function() {
+          button.classList.add('absolute')
+          randomizePosition();
+      });
+
+      let imgInteVal = setInterval(() => {
+        randomizePosition()
+      }, 1000);
+
+      function randomizePosition() {
+            var randomLeft = Math.floor(Math.random() * maxWidth);
+            var randomTop = Math.floor(Math.random() * maxHeight);
+            button.style.left = randomLeft + 'px';
+            button.style.top = randomTop + 'px';
+      }
+
+      // when no is clicked 
+      noButton.addEventListener('click', () => {
+              img.src = './images/ate3.jpg'
+              const text = document.querySelector('.textt')
+              text.textContent = 'Eyyy! 😔😥😭'
+              
+              // hide the buttons 
+              yesBtn.style.display = 'none'
+              noButton.style.display = 'none'
+      })
 
 
-    function randomizePosition() {
-          var randomLeft = Math.floor(Math.random() * maxWidth);
-          var randomTop = Math.floor(Math.random() * maxHeight);
-          button.style.left = randomLeft + 'px';
-          button.style.top = randomTop + 'px';
-    }
+      // when yes is clicked 
+      const yesBtn = document.querySelector('.yes-button')
 
-    noButton.addEventListener('click', () => {
-            img.src = './images/ate3.jpg'
-            const text = document.querySelector('.textt')
-            text.textContent = 'Eyyy! 😔😥😭'
-            
-            // hide the buttons 
-            yesBtn.style.display = 'none'
-            noButton.style.display = 'none'
-    })
-
-    const yesBtn = document.querySelector('.yes-button')
       yesBtn.addEventListener('click', () => {
+        clearInterval(imgInterval)
         img.src = './images/ate3.jpg'
         const text = document.querySelector('.textt')
         text.textContent = 'Yeyyy!!! 😘🥰😍'
