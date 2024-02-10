@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+    body {
+      font-family: 'Pacifico', cursive;
+      cursor: pointer;
+    }
+    #bg {
+      background-image:  url('images/bg1.jpeg');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  </style>
+</head>
+
+<body >
+    <div class="h-screen flex justify-center items-center relative bg-opacity-50" id="bg"">
+        <!-- content  -->
+        <main class=" h-[70vh] w-[500px] flex justify-center items-center flex-col gap-10 ">
+
+            <!-- image  -->
+            <div class="h-[400px] w-[400px]  ">
+                <img id="image" alt="ate image" class=" rounded-full slide-in-elliptic-top-fwd h-full w-full object-cover">
+            </div>
+
+            <!-- text   -->
+            <h1 class="tracking-in-expand textt text-center text-red-600 text-[2.5rem] xlg:text-[5rem] ">Would you be my date on Valentine's? 🥺</h1>
+
+            <!-- buttons  -->
+            <div class="flex justify-between w-[50%] items-center ">
+                    <div class="p-2 flex items-center justify-center ">
+                        <button class="yes-button p-4 bg-emerald-500 text-white text-[2rem] rounded hover:bg-emerald-700 animate-bounce whitespace-nowrap" id="">Yes 😊</button>
+                    </div>
+                    <!-- dynamic position button  -->
+                    <div class="no-button p-2 flex items-center justify-center ">
+                        <button class="p-2 bg-rose-500 text-white rounded whitespace-nowrap" id="no-btn">No 🤨</button>
+                    </div>
+            </div>
+        </main>
+    </div>
+
+  <script>
+    const img = document.querySelector('#image')
+
+    document.addEventListener("DOMContentLoaded", function() {
+        img.src = './images/ate4.jpg'
+
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Tab') {
+          event.preventDefault(); // Prevent default Tab behavior
+        }
+      });
+
+      
+    const noButton = document.querySelector('#no-btn')
+    const button = document.querySelector('.no-button');
+    const maxWidth = window.innerWidth - button.offsetWidth;
+    const maxHeight = window.innerHeight - button.offsetHeight;
+    button.style.transition = 'ease-out 500ms'
+
+    button.addEventListener("mouseenter", function() {
+        button.classList.add('absolute')
+        randomizePosition();
+    });
+    setInterval(() => {
+      randomizePosition()
+    }, 1000);
+
+
+    function randomizePosition() {
+          var randomLeft = Math.floor(Math.random() * maxWidth);
+          var randomTop = Math.floor(Math.random() * maxHeight);
+          button.style.left = randomLeft + 'px';
+          button.style.top = randomTop + 'px';
+    }
+
+    noButton.addEventListener('click', () => {
+            img.src = './images/ate3.jpg'
+            const text = document.querySelector('.textt')
+            text.textContent = 'Eyyy! 😔😥😭'
+            
+            // hide the buttons 
+            yesBtn.style.display = 'none'
+            noButton.style.display = 'none'
+    })
+
+    const yesBtn = document.querySelector('.yes-button')
+      yesBtn.addEventListener('click', () => {
+        img.src = './images/ate3.jpg'
+        const text = document.querySelector('.textt')
+        text.textContent = 'Yeyyy!!! 😘🥰😍'
+        
+        // hide the buttons 
+        yesBtn.style.display = 'none'
+        noButton.style.display = 'none'
+      })
+    });
+
+  </script>
+</body>
+</html>
