@@ -77,7 +77,7 @@
 
       let imgInteVal = setInterval(() => {
         randomizePosition()
-      }, 250);
+      }, 1000);
 
       function randomizePosition() {
             var randomLeft = Math.floor(Math.random() * maxWidth);
@@ -88,9 +88,9 @@
 
       // when no is clicked 
       noButton.addEventListener('click', () => {
-              img.src = './images/ate3.jpg'
+              img.src = './images/ate1.jpg'
               const text = document.querySelector('.textt')
-              text.textContent = 'Eyyy! 😔😥😭'
+              text.textContent = 'Ouch! 😔😥😭'
               
               // hide the buttons 
               yesBtn.style.display = 'none'
