@@ -37,7 +37,7 @@
             <!-- buttons  -->
             <div class="flex justify-between w-[50%] items-center ">
                     <div class="p-2 flex items-center justify-center ">
-                        <button class="yes-button p-4 bg-emerald-500 text-white text-[2rem] rounded hover:bg-emerald-700 animate-bounce whitespace-nowrap" id="">Yes 😊</button>
+                        <button class="p-4 bg-emerald-500 text-white text-[2rem] rounded hover:bg-emerald-700 animate-bounce whitespace-nowrap" id="yes-btn">Yes 😊</button>
                     </div>
                     <!-- dynamic position button  -->
                     <div class="no-button p-2 flex items-center justify-center ">
@@ -75,7 +75,7 @@
           randomizePosition();
       });
 
-      let imgInteVal = setInterval(() => {
+      let imgInterVal = setInterval(() => {
         randomizePosition()
       }, 1000);
 
@@ -88,21 +88,23 @@
 
       // when no is clicked 
       noButton.addEventListener('click', () => {
-              img.src = './images/ate1.jpg'
-              const text = document.querySelector('.textt')
-              text.textContent = 'Ouch! 😔😥😭'
-              
-              // hide the buttons 
-              yesBtn.style.display = 'none'
-              noButton.style.display = 'none'
+        clearInterval(imgInterVal)
+        img.src = './images/ate1.jpg'
+        const text = document.querySelector('.textt')
+        text.textContent = 'Ouch! 😔😥😭'
+        
+        // hide the buttons 
+        yesBtn.style.display = 'none'
+        noButton.style.display = 'none'
       })
 
 
       // when yes is clicked 
-      const yesBtn = document.querySelector('.yes-button')
+      const yesBtn = document.querySelector('#yes-btn')
 
       yesBtn.addEventListener('click', () => {
-        clearInterval(imgInterval)
+        console.log('clicked')
+        clearInterval(imgInterVal)
         img.src = './images/ate3.jpg'
         const text = document.querySelector('.textt')
         text.textContent = 'Yeyyy!!! 😘🥰😍'
